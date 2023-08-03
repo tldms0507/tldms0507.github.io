@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="'en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+    <div id="page">
+<img src="img/버니즈.png" alt="" class="pointer">
+      <div class="navigation">
+        <nav class="nav_bar">
+          <img src="img/logo.svg" alt="" id="logo" />
+          <button class="nav_item">member</button>
+          <button class="nav_item">SNS</button>
+          <button class="nav_item">music</button>
+          <button class="nav_item">abc</button>
+        </nav>
+      </div>
+
+      <div class="content">
+        <div class="title">member</div>
+        <img src="img/burble.png" alt="" id="burble" />
+        <div id="click_me">클릭하면 설명이 나타납니다!</div>
+        <br />
+        <img src="img/member.png" alt="" id="member" />
+        <img src="img/민지.png" alt="" id="minji" />
+        <img src="img/다니엘.png" alt="" id="daniel" />>
+        <div id="clickcontents" onclick="clickshow(this,'contents')">
+          여기를 클릭해 보세요
+        </div>
+        <div id="contents" style="display: none">내용</div>
+        <iframe
+          width="80%"
+          height="500px"
+          src="https://www.youtube.com/embed/ArmDp-zijuc?autoplay=1&mute=1&loop=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+
+
+    <script>
+      function clickshow(elem, ID) {
+        var menu = document.getElementById(ID);
+        if (elem.className != "clickcontents") {
+          elem.className = "clickcontents";
+          menu.style.display = "none";
+        } else {
+          elem.className = "opened";
+          menu.style.display = "block";
+        }
+      }
+
+      //로고 이미지 클릭 시 화면 새로고침
+      function reload() {
+        window.location.reload();
+      }
+
+      document.getElementById("logo").addEventListener("click", reload);
+
+      var pointSize = $(".pointer").width()/2;
+      $("#page").mousemove(function (event) {
+        $(".pointer").css("top", event.pageY - pointSize);
+        $(".pointer").css("left", event.pageX - pointSize);
+        $(".pointer").fadeIn();
+      });
+      $("#page").on("mouseleave", function () {
+        $(".pointer").fadeOut();
+      });
+    </script>
+  </body>
+</html>

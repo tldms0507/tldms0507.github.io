@@ -1,0 +1,152 @@
+@font-face {
+  font-family: "NeoDunggeunmo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+}
+#page {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(skyblue, pink, white);
+  flex-direction: column-reverse;
+  align-content: flex-end;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.pointer {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transition: all 0.3s ease-out;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.navigation {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+#logo {
+  width: 240px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* .nav_bar {
+
+} */
+
+.nav_item {
+  font-family: "NeoDunggeunmo";
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+  border-radius: 7px;
+  border: 0px;
+  min-height: 100px;
+  margin: auto;
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav_item:nth-child(2n + 1) {
+  color: white;
+  background-color: rgb(167, 218, 238);
+}
+.nav_item:nth-child(2n + 1):hover {
+  background-color: white;
+  color: skyblue;
+  transition: all 0.2s linear;
+  transform: scale(1.1);
+  font-size: 35px;
+}
+.nav_item:nth-child(2n + 2) {
+  color: white;
+  background-color: rgb(251, 194, 203);
+}
+.nav_item:nth-child(2n + 2):hover {
+  background-color: white;
+  color: pink;
+  transition: all 0.2s linear;
+  transform: scale(1.1);
+  font-size: 35px;
+}
+
+.content {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#member {
+  width: 90%;
+}
+
+.title {
+  font-family: "NeoDunggeunmo";
+  font-size: 90px;
+  color: white;
+  -webkit-text-stroke: 1px pink;
+
+}
+
+#burble {
+  width: 500px;
+}
+
+#click_me {
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  position: absolute;
+  margin-top: 140px;
+}
+
+#minji {
+  position: absolute;
+  width: 240px;
+  margin-top: 285px;
+  margin-right: 696px;
+  transition: all 0.2s ease-in-out;
+}
+
+#minji:hover {
+  width: 260px;
+  margin-top: 270px;
+  transition: all 0.2s linear;
+}
+
+#daniel {
+  position: absolute;
+  width: 240px;
+  margin-top: 290px;
+  margin-left: 35px;
+  transition: all 0.2s ease-in-out;
+}
+
+#daniel:hover {
+  width: 260px;
+  margin-top: 275px;
+  transition: all 0.2s linear;
+}
