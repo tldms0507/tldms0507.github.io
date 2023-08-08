@@ -18,7 +18,7 @@ body {
   width: 100vw;
   background: linear-gradient(skyblue, pink, white);
   flex-direction: column-reverse;
-  align-content: flex-end;
+  align-content: center;
   justify-content: flex-end;
   flex-wrap: wrap;
 }
@@ -28,20 +28,21 @@ body {
   width: 70px;
   height: 70px;
   transition: all 0.3s ease-out;
-  z-index: 1;
+  z-index: 2;
 }
 
 .content {
   display: flex;
   flex-direction: row;
   text-align: center;
+  margin-left: 260px;
 }
 
 .navigation {
   position: fixed;
   display: flex;
   flex-direction: row;
-  margin: 10px;
+  margin: 30px;
 }
 
 #logo {
@@ -100,53 +101,229 @@ body {
   align-items: center;
 }
 
-#member {
-  width: 90%;
+.slide {
+  margin: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: 1200px;
+  height: 600px;
+}
+
+.slide_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* position - 버튼 클릭시 left offset값을 적용시키기 위해 */
+  position: relative;
+  left: 0px;
+
+  /* size */
+  width: 1200px;
+
+  /* flex item의 flex-shrink는 기본값이 1이므로 컨테이너 크기에 맞게 줄어드는데, 슬라이드를 구현할 것이므로 줄어들지 않도록 0을 준다. */
+  flex-shrink: 0;
+  transition: left 0.15s;
+}
+.slide_item.item1 {
+  background-image: url(./img/단체1.jpg);
+  background-size: cover;
+}
+.slide_item.item2 {
+  background-image: url(./img/단체2.jpg);
+  background-size: cover;
+}
+.slide_item.item3 {
+  background-image: url(./img/단체3.jpg);
+  background-size: cover;
+}
+.slide_item.item4 {
+  background-image: url(./img/단체4.jpg);
+  background-size: cover;
+}
+
+.slide_item_duplicate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 0px;
+  width: 100%;
+  height: 300px;
+  flex-shrink: 0;
+  transition: left 0.15s;
+}
+
+#star {
+  width: 1000px;
+  height: 400px;
+  z-index: 0;
 }
 
 .title {
   font-family: "NeoDunggeunmo";
   font-size: 90px;
   color: white;
-  -webkit-text-stroke: 1px pink;
+  -webkit-text-stroke: 1.5px pink;
+}
 
+.title:nth-child(2n+1) {
+  -webkit-text-stroke: 1.5px skyblue;
+}
+
+.member_list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  margin-top: 1000px;
+}
+
+.member_name {
+  font-family: "NeoDunggeunmo";
+  font-size: 40px;
+  color: white;
+  -webkit-text-stroke: 1px rgb(241, 151, 166);
+  width: 960px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  margin-top: 970px;
+  margin-left: 20px;
+}
+
+.member {
+  display: flex;
+  z-index: 1;
 }
 
 #burble {
   width: 500px;
 }
 
-#click_me {
+.click_burble.burble1{
   font-family: "NeoDunggeunmo";
   font-size: 30px;
   position: absolute;
-  margin-top: 140px;
+  margin-top: 820px;
+}
+
+.click_burble.burble2 {
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  position: absolute;
+  margin-top: 4600px;
 }
 
 #minji {
-  position: absolute;
-  width: 240px;
-  margin-top: 285px;
-  margin-right: 696px;
+  width: 200px;
   transition: all 0.2s ease-in-out;
 }
 
 #minji:hover {
-  width: 260px;
-  margin-top: 270px;
+  width: 230px;
+  cursor: zoom-in;
+  transition: all 0.2s linear;
+}
+#hani {
+  width: 200px;
+  transition: all 0.2s ease-in-out;
+}
+
+#hani:hover {
+  width: 230px;
+  cursor: zoom-in;
   transition: all 0.2s linear;
 }
 
 #daniel {
-  position: absolute;
-  width: 240px;
-  margin-top: 290px;
-  margin-left: 35px;
+  width: 200px;
   transition: all 0.2s ease-in-out;
 }
 
 #daniel:hover {
-  width: 260px;
-  margin-top: 275px;
+  width: 230px;
+  cursor: zoom-in;
   transition: all 0.2s linear;
+}
+
+#haerin {
+  width: 200px;
+  transition: all 0.2s ease-in-out;
+}
+
+#haerin:hover {
+  width: 230px;
+  cursor: zoom-in;
+  transition: all 0.2s linear;
+}
+#hyein {
+  width: 200px;
+  transition: all 0.2s ease-in-out;
+}
+
+#hyein:hover {
+  width: 230px;
+  cursor: zoom-in;
+  transition: all 0.2s linear;
+}
+
+.discript {
+  background: linear-gradient(white, rgb(254, 213, 220));
+  opacity: 0;
+  transition: all 0.5s ease;
+  transform: translate(0, 100px);
+  margin-bottom: 20px;
+  border-radius: 30px;
+}
+
+.discript:nth-child(2n) {
+  background: linear-gradient(white, rgb(212, 233, 254));
+}
+
+.discript.show {
+  opacity: 1;
+  transform: none;
+}
+
+#hani_pic,
+#haerin_pic {
+  width: 400px;
+  height: 600px;
+  float: right;
+  transition: all 0.2s;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+#minji_pic,
+#daniel_pic,
+#hyein_pic {
+  width: 400px;
+  height: 600px;
+  float: left;
+  transition: all 0.2s;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+#name {
+  margin: 15px;
+  font-family: "NeoDunggeunmo";
+  font-size: 40px;
+}
+
+#discript {
+  width: 1000px;
+  font-family: "NeoDunggeunmo";
+  font-size: 25px;
+  padding: 10px;
+  color: rgb(79, 49, 67);
+}
+
+.album > img {
+  width: 250px;
 }
