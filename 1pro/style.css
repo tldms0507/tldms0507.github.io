@@ -5,18 +5,26 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "bitbit";
+  src: url("//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff"),
+    url("//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2");
+}
 html,
 body {
   height: 100vh;
   width: 100vw;
   margin: 0px;
 }
+body {
+  background: linear-gradient(skyblue, pink, white, skyblue);
+}
 #page {
   display: flex;
   position: relative;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(skyblue, pink, white);
+  /* background: linear-gradient(skyblue, pink, white); */
   flex-direction: column-reverse;
   align-content: center;
   justify-content: flex-end;
@@ -28,7 +36,7 @@ body {
   width: 70px;
   height: 70px;
   transition: all 0.3s ease-out;
-  z-index: 2;
+  z-index: 20;
 }
 
 .content {
@@ -43,24 +51,22 @@ body {
   display: flex;
   flex-direction: row;
   margin: 30px;
+  z-index: 10;
 }
 
 #logo {
-  width: 240px;
+  width: 17vw;
   margin-bottom: 25px;
   position: relative;
 }
 
-/* .nav_bar {
-
-} */
-
 .nav_item {
-  font-family: "NeoDunggeunmo";
+  font-family: "bitbit";
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  width: 240px;
+  width: 17vw;
+  height: 16vh;
   display: flex;
   flex-direction: column;
   font-size: 40px;
@@ -72,6 +78,19 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
+/* @media screen and (max-width: 768px) {
+	.nav_item {
+		background-color: lightgreen;
+	}
+} */
+
+.nav_item:nth-child(2n + 1):active {
+  border: 3px solid skyblue;
+}
+.nav_item:nth-child(2n + 2):active {
+  border: 3px solid pink;
+}
+
 .nav_item:nth-child(2n + 1) {
   color: white;
   background-color: rgb(167, 218, 238);
@@ -80,7 +99,7 @@ body {
   background-color: white;
   color: skyblue;
   transition: all 0.2s linear;
-  transform: scale(1.1);
+  transform: scale(1.08);
   font-size: 35px;
 }
 .nav_item:nth-child(2n + 2) {
@@ -91,8 +110,16 @@ body {
   background-color: white;
   color: pink;
   transition: all 0.2s linear;
-  transform: scale(1.1);
+  transform: scale(1.08);
   font-size: 35px;
+}
+
+.active {
+  height: 20vh;
+}
+
+.no_active {
+  height: 16vh;
 }
 
 .content {
@@ -101,27 +128,32 @@ body {
   align-items: center;
 }
 
+#top {
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  position: absolute;
+  z-index: 5;
+}
+
 .slide {
   margin: 20px;
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
-  width: 1200px;
-  height: 600px;
+  width: 75vw;
+  max-width: 1200px;
+  height: 700px;
 }
 
 .slide_item {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* position - 버튼 클릭시 left offset값을 적용시키기 위해 */
   position: relative;
   left: 0px;
-
-  /* size */
   width: 1200px;
-
   /* flex item의 flex-shrink는 기본값이 1이므로 컨테이너 크기에 맞게 줄어드는데, 슬라이드를 구현할 것이므로 줄어들지 않도록 0을 준다. */
   flex-shrink: 0;
   transition: left 0.15s;
@@ -129,71 +161,88 @@ body {
 .slide_item.item1 {
   background-image: url(./img/단체1.jpg);
   background-size: cover;
+  max-width: 1200px;
+  background-size: cover;
 }
 .slide_item.item2 {
   background-image: url(./img/단체2.jpg);
+  width: 1200px;
+  max-width: 1200px;
   background-size: cover;
 }
 .slide_item.item3 {
   background-image: url(./img/단체3.jpg);
+  width: 1200px;
+  max-width: 1200px;
   background-size: cover;
 }
 .slide_item.item4 {
   background-image: url(./img/단체4.jpg);
+  width: 1200px;
+  max-width: 1200px;
   background-size: cover;
 }
 
-.slide_item_duplicate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  left: 0px;
-  width: 100%;
-  height: 300px;
-  flex-shrink: 0;
-  transition: left 0.15s;
-}
-
-#star {
-  width: 1000px;
-  height: 400px;
-  z-index: 0;
-}
-
 .title {
-  font-family: "NeoDunggeunmo";
+  font-family: "bitbit";
   font-size: 90px;
   color: white;
   -webkit-text-stroke: 1.5px pink;
 }
 
-.title:nth-child(2n+1) {
+.title:nth-child(2n + 1) {
   -webkit-text-stroke: 1.5px skyblue;
 }
 
+#bubble {
+  width: 20vw;
+}
+
+.bubble.bubble1 {
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  position: absolute;
+  margin-top: 928px;
+}
+
+#star {
+  position: relative;
+  background-image: url(./img/배경.png);
+  background-size: cover;
+  width: 75vw;
+  height: 400px;
+  max-width: 1200px;
+  z-index: 0;
+  border-radius: 30px;
+}
 .member_list {
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  padding-top: 2%;
   flex-direction: row;
-  position: absolute;
-  margin-top: 1000px;
+  margin-top: 100px;
+  width: 90%;
 }
 
 .member_name {
-  font-family: "NeoDunggeunmo";
+  font-family: "bitbit";
   font-size: 40px;
   color: white;
-  -webkit-text-stroke: 1px rgb(241, 151, 166);
+  -webkit-text-stroke: 1.5px rgb(241, 151, 166);
   width: 960px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
   position: absolute;
-  margin-top: 970px;
+  margin-top: 50px;
   margin-left: 20px;
+  max-width: 90%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .member {
@@ -201,73 +250,60 @@ body {
   z-index: 1;
 }
 
-#burble {
+#bubble {
   width: 500px;
-}
-
-.click_burble.burble1{
-  font-family: "NeoDunggeunmo";
-  font-size: 30px;
-  position: absolute;
-  margin-top: 820px;
-}
-
-.click_burble.burble2 {
-  font-family: "NeoDunggeunmo";
-  font-size: 30px;
-  position: absolute;
-  margin-top: 4600px;
+  position: relative;
 }
 
 #minji {
-  width: 200px;
+  width: 15%;
   transition: all 0.2s ease-in-out;
 }
 
 #minji:hover {
-  width: 230px;
+  transform: scale(1.4);
   cursor: zoom-in;
   transition: all 0.2s linear;
 }
 #hani {
-  width: 200px;
+  width: 15%;
   transition: all 0.2s ease-in-out;
 }
 
 #hani:hover {
-  width: 230px;
+  transform: scale(1.4);
   cursor: zoom-in;
   transition: all 0.2s linear;
 }
 
 #daniel {
-  width: 200px;
+  width: 15%;
   transition: all 0.2s ease-in-out;
 }
 
 #daniel:hover {
-  width: 230px;
+  transform: scale(1.4);
   cursor: zoom-in;
   transition: all 0.2s linear;
 }
 
 #haerin {
-  width: 200px;
+  width: 15%;
   transition: all 0.2s ease-in-out;
 }
 
 #haerin:hover {
-  width: 230px;
+  transform: scale(1.4);
   cursor: zoom-in;
   transition: all 0.2s linear;
 }
 #hyein {
-  width: 200px;
+  width: 15%;
   transition: all 0.2s ease-in-out;
 }
 
 #hyein:hover {
-  width: 230px;
+  transform: scale(1.4);
   cursor: zoom-in;
   transition: all 0.2s linear;
 }
@@ -312,18 +348,174 @@ body {
 }
 #name {
   margin: 15px;
-  font-family: "NeoDunggeunmo";
-  font-size: 40px;
+  font-family: "bitbit";
+  font-size: 45px;
 }
 
 #discript {
-  width: 1000px;
+  width: 75vw;
+  max-width: 1200px;
   font-family: "NeoDunggeunmo";
   font-size: 22px;
   padding: 10px;
   color: rgb(79, 49, 67);
 }
+.bubble.bubble2 {
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  position: absolute;
+  margin-top: 4718px;
+}
 
-.album > img {
-  width: 250px;
+.album {
+  width: 70%;
+}
+.album_img {
+  width: 19%;
+
+  /* max-width: 17%; */
+}
+
+iframe {
+  z-index: 1;
+}
+
+.bubble.bubble3 {
+  font-family: "NeoDunggeunmo";
+  color: white;
+  -webkit-text-stroke: 1.5px black;
+  font-size: 40px;
+  background-image: url("./img/newjeans.jpeg");
+  max-width: 70%;
+  width: 1000px;
+  height: 500px;
+  background-size: cover;
+  position: relative;
+}
+
+#youtube_back {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 33px;
+  top: 3%;
+  width: 450px;
+}
+
+#sns_list1 {
+  display: flex;
+}
+#sns_list2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+.sns_icon {
+  display: inline-block;
+  z-index: 1;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin-top: 18px;
+  justify-content: space-evenly;
+}
+#icon1 {
+  background-image: url(./img/insta_icon.png);
+  background-size: cover;
+  margin-left: 10px;
+}
+#icon2 {
+  background-image: url(./img/twitter_icon.png);
+  background-size: cover;
+  margin-left: 270px;
+}
+#icon3 {
+  background-image: url(./img/youtube_icon.png);
+  background-size: cover;
+  margin-left: 510px;
+}
+#icon4 {
+  background-image: url(./img/tiktok_icon.png);
+  background-size: cover;
+  margin-left: 760px;
+}
+.sns_name {
+  border: 3px solid black;
+  font-family: "bitbit";
+  font-size: 35px;
+  width: 203px;
+  height: 52px;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 40px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: white;
+}
+
+#article {
+  border: 3px solid black;
+  border-top: 3px solid white;
+  font-family: "NeoDunggeunmo";
+  font-size: 30px;
+  width: 990px;
+  height: 600px;
+  background-color: white;
+}
+
+#a_tag:hover {
+  color: pink;
+}
+
+.capture {
+  height: 430px;
+  margin-top: 20px;
+}
+
+#title_quiz {
+  margin-top: 100px;
+}
+
+
+#question {
+  position: absolute;
+  background-image: url(./img/q_bubble.png);
+  background-size: cover;
+  width: 700px;
+  height: 100px;
+  left: 50%;
+  transform: translate(-50%, -130%);
+  margin-left: 140px;
+  padding-top: 25px;
+  z-index: 5;
+}
+
+.buttons {
+  margin-top: 120px;
+  padding-top: 10px;
+  border: 4px dashed #ffffff;
+  border-radius: 20px;
+  height: 300px;
+}
+.answer_btn {
+  font-family: "NeoDunggeunmo";
+  background-color: #ffffff;
+  color: #5f2947;
+  width: 240px;
+  font-size: 30px;
+  border: 1px solid #ffe3ed;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  transition: 0.5s;
+}
+
+.answer_btn:hover {
+  cursor: pointer;
+  background-color: #ffb9d0;
+  color: white;
+}
+.answer_btn:focus {
+  outline: 0;
 }

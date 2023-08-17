@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
-  <!-- https://joshua-dev-story.blogspot.com/2020/11/javascript-css-scroll-animation.html -->
+
   <body>
     <div id="page">
       <img src="./img/버니즈.png" alt="" class="pointer" />
@@ -19,67 +19,77 @@
           <button class="nav_item" onclick="location.href='#title_music'">
             Music
           </button>
-          <button class="nav_item">SNS</button>
-          <button class="nav_item">Quiz</button>
+          <button class="nav_item" onclick="location.href='#title_sns'">
+            SNS
+          </button>
+          <button class="nav_item" onclick="location.href='#title_quiz'">
+            Quiz
+          </button>
         </nav>
       </div>
 
       <div class="content">
+        
+
         <div class="slide slide_wrap">
           <div class="slide_item item1"></div>
           <div class="slide_item item2"></div>
           <div class="slide_item item3"></div>
+          <div class="slide_item item4"></div>
         </div>
         <br /><br />
         <div class="title" id="title_member">Member</div>
-        <img src="./img/burble.png" alt="" id="burble" />
-        <div class="member_list">
-          <img
-            onclick="location.href='#minji_disc'"
-            src="./img/민지.png"
-            alt=""
-            id="minji"
-            class="member"
-          />
-          <img
-            onclick="location.href='#hani_disc'"
-            src="./img/하니.png"
-            alt=""
-            id="hani"
-            class="member"
-          />
-          <img
-            onclick="location.href='#daniel_disc'"
-            src="./img/다니엘.png"
-            alt=""
-            id="daniel"
-            class="member"
-          />
-          <img
-            onclick="location.href='#haerin_disc'"
-            src="./img/해린.png"
-            alt=""
-            id="haerin"
-            class="member"
-          />
-          <img
-            onclick="location.href='#hyein_disc'"
-            src="./img/혜인.png"
-            alt=""
-            id="hyein"
-            class="member"
-          />
+        <img src="./img/bubble.png" alt="" id="bubble" />
+        <div id="star">
+          <div class="member_list">
+            <img
+              onclick="location.href='#minji_disc'"
+              src="./img/민지.png"
+              alt=""
+              id="minji"
+              class="member"
+            />
+            <img
+              onclick="location.href='#hani_disc'"
+              src="./img/하니.png"
+              alt=""
+              id="hani"
+              class="member"
+            />
+            <img
+              onclick="location.href='#daniel_disc'"
+              src="./img/다니엘.png"
+              alt=""
+              id="daniel"
+              class="member"
+            />
+            <img
+              onclick="location.href='#haerin_disc'"
+              src="./img/해린.png"
+              alt=""
+              id="haerin"
+              class="member"
+            />
+            <img
+              onclick="location.href='#hyein_disc'"
+              src="./img/혜인.png"
+              alt=""
+              id="hyein"
+              class="member"
+            />
+          </div>
+          <div class="member_name">
+            <div class="member">#Minji</div>
+            <div class="member">#Hani</div>
+            <div class="member">#Daniel</div>
+            <div class="member">#Haerin</div>
+            <div class="member">#Hyein</div>
+          </div>
         </div>
-        <div class="member_name">
-          <div class="member">#Minji</div>
-          <div class="member">#Hani</div>
-          <div class="member">#Daniel</div>
-          <div class="member">#Haerin</div>
-          <div class="member">#Hyein</div>
-        </div>
+
         <br />
-        <img src="./img/배경.png" alt="" id="star" />
-        <div class="click_burble burble1">클릭하면 이동합니다 !</div>
+
+        <div class="bubble bubble1">클릭하면 이동합니다 !</div>
         <br />
         <div class="discript" id="minji_disc" data-sa-delay="100">
           <img src="./img/minji_pic.webp" alt="" id="minji_pic" />
@@ -188,58 +198,89 @@
 
         <br /><br />
         <div class="title" id="title_music">Music</div>
-        <img src="./img/burble.png" alt="" id="burble" />
+        <img src="./img/bubble.png" alt="" id="bubble" />
         <br />
-        <div class="click_burble burble2">마우스를 올려보세요 !</div>
+        <div class="bubble bubble2">앨범커버를 클릭해주세요 !</div>
         <div class="album">
           <img id="album_1" class="album_img" src="./img/album_1.png" alt="" />
           <img id="album_2" class="album_img" src="./img/album_2.jpg" alt="" />
           <img id="album_3" class="album_img" src="./img/album_3.jpg" alt="" />
           <img id="album_4" class="album_img" src="./img/album_4.webp" alt="" />
         </div>
-<br>
-        <iframe
-          width="80%"
-          height="500px"
-          src="https://www.youtube.com/embed/js1CtxSY38I?autoplay=1&mute=1&loop=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          style="display: none"
-        ></iframe>
-        <iframe
-          width="80%"
-          height="500px"
-          src="https://www.youtube.com/embed/Km71Rr9K-Bw?autoplay=1&mute=1&loop=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          style="display: none"
-        ></iframe>
-        <iframe
-        width="80%"
-        height="500px"
-          src="https://www.youtube.com/embed/jUmeh5yvy0M?autoplay=1&mute=1&loop=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-        <iframe
-          width="80%"
-          height="500px"
-          src="https://www.youtube.com/embed/ArmDp-zijuc?autoplay=1&mute=1&loop=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          style="display: none"
-        ></iframe>
+        <br />
+
+        <div class="bubble bubble3">
+          <div id="youtube_back">이곳에 영상이 재생 됩니다 !</div>
+          <div>
+            <iframe
+              width="100%"
+              height="100%"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              style="display: none; z-index: 3; position: absolute"
+            ></iframe>
+          </div>
+        </div>
 
         <br /><br />
         <div class="title" id="title_sns">SNS</div>
+        <div class="sns">
+          <div id="sns_list1">
+            <div class="sns_icon" id="icon1"></div>
+            <div class="sns_icon" id="icon2"></div>
+            <div class="sns_icon" id="icon3"></div>
+            <div class="sns_icon" id="icon4"></div>
+          </div>
+          <div id="sns_list2">
+            <div class="sns_name" id="instagram">Instagram</div>
+            <div class="sns_name" id="twitter">Twitter</div>
+            <div class="sns_name" id="youtube">Youtube</div>
+            <div class="sns_name" id="tictok">Tiktok</div>
+          </div>
+          <div id="article">
+            <br />
+            <a
+              href="https://www.instagram.com/newjeans_official/"
+              target="_blank"
+              id="a_tag"
+              >새 창으로 해당 SNS로 이동합니다 !</a
+            >
+            <img class="capture" src="./img/insta_capt.png" alt="" />
+            <br /><br /><br />
+            <div class="title" id="title_quiz">Quiz</div>
+            <br />
+            <div>
+              <p id="question"></p>
+              <div id="quiz">
+                <div class="buttons">
+                  <button
+                    class="answer_btn"
+                    style="width: 40%; height: 40%"
+                  ></button>
+                  <button
+                    class="answer_btn"
+                    style="width: 40%; height: 40%"
+                  ></button>
+                  <br />
+                  <button
+                    class="answer_btn"
+                    style="width: 40%; height: 40%"
+                  ></button>
+                  <button
+                    class="answer_btn"
+                    style="width: 40%; height: 40%"
+                  ></button>
+                </div>
+                <footer>
+                  <p id="progress">문제 x of y.</p>
+                </footer>
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -301,61 +342,318 @@
       window.addEventListener("load", saFunc);
       window.addEventListener("scroll", saFunc);
 
-      //앨범 사진에 마우스를 올릴 시 해당 유튜브 영상 자동재생
-      document.getElementById("album_1").addEventListener("mouseover", () => {
-        document.getElementsByTagName("iframe")[0].style.display = "block";
-        for (i=1; i<=3;i++) {
-          document.getElementsByClassName("album_img")[i].style.opacity = "40%";
+      //앨범 사진을 클릭시 해당 유튜브 영상 나타나기
+      let album_img = document.getElementsByClassName("album_img");
+      document.getElementById("album_1").addEventListener("click", () => {
+        document.getElementsByTagName("iframe")[0].src =
+          "https://www.youtube.com/embed/js1CtxSY38I";
+        if (
+          document.getElementsByTagName("iframe")[0].style.display == "none"
+        ) {
+          document.getElementsByTagName("iframe")[0].style.display = "block";
+          for (i = 1; i <= 3; i++) {
+            album_img[i].style.opacity = "40%";
+          }
+        } else {
+          document.getElementsByTagName("iframe")[0].style.display = "none";
+          for (i = 1; i <= 3; i++) {
+            album_img[i].style.opacity = "100%";
+          }
         }
       });
 
-      //앨범 사진에 마우스를 안 올릴 때 영상이 다시 없어지도록
-      document.getElementById("album_1").addEventListener("mouseout", () => {
-        document.getElementsByTagName("iframe")[0].style.display = "none";
-        for (i=1; i<=3;i++) {
-          document.getElementsByClassName("album_img")[i].style.opacity = "100%";
-        }
-      });
       //2번째 앨범
-      document.getElementById("album_2").addEventListener("mouseover", () => {
-        document.getElementsByTagName("iframe")[1].style.display = "block";
-        document.getElementsByClassName("album_img")[0].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[2].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[3].style.opacity = "40%";
-      });
-      document.getElementById("album_2").addEventListener("mouseout", () => {
-        document.getElementsByTagName("iframe")[1].style.display = "none";
-        document.getElementsByClassName("album_img")[0].style.opacity = "100%";
-        document.getElementsByClassName("album_img")[2].style.opacity = "100%";
-        document.getElementsByClassName("album_img")[3].style.opacity = "100%";
-
+      document.getElementById("album_2").addEventListener("click", () => {
+        document.getElementsByTagName("iframe")[0].src =
+          "https://www.youtube.com/embed/qaO0Wq3Acfs";
+        if (
+          document.getElementsByTagName("iframe")[0].style.display == "none"
+        ) {
+          document.getElementsByTagName("iframe")[0].style.display = "block";
+          album_img[0].style.opacity = "40%";
+          album_img[2].style.opacity = "40%";
+          album_img[3].style.opacity = "40%";
+        } else {
+          document.getElementsByTagName("iframe")[0].style.display = "none";
+          album_img[0].style.opacity = "100%";
+          album_img[2].style.opacity = "100%";
+          album_img[3].style.opacity = "100%";
+        }
       });
       //3번째 앨범
-      document.getElementById("album_3").addEventListener("mouseover", () => {
-        document.getElementsByTagName("iframe")[2].style.display = "block";
-        document.getElementsByClassName("album_img")[0].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[1].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[3].style.opacity = "40%";
+      document.getElementById("album_3").addEventListener("click", () => {
+        document.getElementsByTagName("iframe")[0].src =
+          "https://www.youtube.com/embed/jUmeh5yvy0M";
+        if (
+          document.getElementsByTagName("iframe")[0].style.display == "none"
+        ) {
+          document.getElementsByTagName("iframe")[0].style.display = "block";
+          album_img[0].style.opacity = "40%";
+          album_img[1].style.opacity = "40%";
+          album_img[3].style.opacity = "40%";
+        } else {
+          document.getElementsByTagName("iframe")[0].style.display = "none";
+          album_img[0].style.opacity = "100%";
+          album_img[1].style.opacity = "100%";
+          album_img[3].style.opacity = "100%";
+        }
       });
-      document.getElementById("album_3").addEventListener("mouseout", () => {
-        document.getElementsByTagName("iframe")[2].style.display = "none";
-        document.getElementsByClassName("album_img")[0].style.opacity = "100%";
-        document.getElementsByClassName("album_img")[1].style.opacity = "100%";
-        document.getElementsByClassName("album_img")[3].style.opacity = "100%";
-      });
+
       //4번째 앨범
-      document.getElementById("album_4").addEventListener("mouseover", () => {
-        document.getElementsByTagName("iframe")[3].style.display = "block";
-        document.getElementsByClassName("album_img")[0].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[1].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[2].style.opacity = "40%";
+      document.getElementById("album_4").addEventListener("click", () => {
+        document.getElementsByTagName("iframe")[0].src =
+          "https://www.youtube.com/embed/ArmDp-zijuc";
+        if (
+          document.getElementsByTagName("iframe")[0].style.display == "none"
+        ) {
+          document.getElementsByTagName("iframe")[0].style.display = "block";
+          album_img[0].style.opacity = "40%";
+          album_img[1].style.opacity = "40%";
+          album_img[2].style.opacity = "40%";
+        } else {
+          document.getElementsByTagName("iframe")[0].style.display = "none";
+          album_img[0].style.opacity = "100%";
+          album_img[1].style.opacity = "100%";
+          album_img[2].style.opacity = "100%";
+        }
       });
-      document.getElementById("album_4").addEventListener("mouseout", () => {
-        document.getElementsByTagName("iframe")[3].style.display = "none";
-                document.getElementsByClassName("album_img")[0].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[1].style.opacity = "40%";
-        document.getElementsByClassName("album_img")[2].style.opacity = "40%";
-      });
+
+      //sns 이름을 클릭하면 글자색 변경, 아래 div와 연결돼보이는 효과, 해당 sns 내용으로 변경
+      document
+        .getElementsByClassName("sns_name")[0]
+        .addEventListener("click", () => {
+          document.getElementsByClassName("sns_name")[0].style.color = "pink";
+          document.getElementsByClassName("sns_name")[0].style.borderBottom =
+            "3px solid white";
+          document.querySelector("a").href =
+            "https://www.instagram.com/newjeans_official/";
+          document.getElementsByClassName("capture")[0].src =
+            "./img/insta_capt.png";
+          document.getElementsByClassName("sns_name")[1].style.color = "black";
+          document.getElementsByClassName("sns_name")[1].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[2].style.color = "black";
+          document.getElementsByClassName("sns_name")[2].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[3].style.color = "black";
+          document.getElementsByClassName("sns_name")[3].style.borderBottom =
+            "3px solid black";
+        });
+
+      document
+        .getElementsByClassName("sns_name")[1]
+        .addEventListener("click", () => {
+          document.getElementsByClassName("sns_name")[0].style.color = "black";
+          document.getElementsByClassName("sns_name")[0].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[1].style.color = "pink";
+          document.getElementsByClassName("sns_name")[1].style.borderBottom =
+            "3px solid white";
+          document.querySelector("a").href =
+            "https://twitter.com/NewJeans_ADOR";
+          document.getElementsByClassName("capture")[0].src =
+            "./img/twitter_capt.png";
+          document.getElementsByClassName("sns_name")[2].style.color = "black";
+          document.getElementsByClassName("sns_name")[2].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[3].style.color = "black";
+          document.getElementsByClassName("sns_name")[3].style.borderBottom =
+            "3px solid black";
+        });
+
+      document
+        .getElementsByClassName("sns_name")[2]
+        .addEventListener("click", () => {
+          document.getElementsByClassName("sns_name")[0].style.color = "black";
+          document.getElementsByClassName("sns_name")[0].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[1].style.color = "black";
+          document.getElementsByClassName("sns_name")[1].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[2].style.color = "pink";
+          document.getElementsByClassName("sns_name")[2].style.borderBottom =
+            "3px solid white";
+          document.querySelector("a").href =
+            "https://www.youtube.com/channel/UCMki_UkHb4qSc0qyEcOHHJw";
+          document.getElementsByClassName("capture")[0].src =
+            "./img/youtube_capt.png";
+          document.getElementsByClassName("sns_name")[3].style.color = "black";
+          document.getElementsByClassName("sns_name")[3].style.borderBottom =
+            "3px solid black";
+        });
+
+      document
+        .getElementsByClassName("sns_name")[3]
+        .addEventListener("click", () => {
+          document.getElementsByClassName("sns_name")[0].style.color = "black";
+          document.getElementsByClassName("sns_name")[0].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[1].style.color = "black";
+          document.getElementsByClassName("sns_name")[1].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[2].style.color = "black";
+          document.getElementsByClassName("sns_name")[2].style.borderBottom =
+            "3px solid black";
+          document.getElementsByClassName("sns_name")[3].style.color = "pink";
+          document.getElementsByClassName("sns_name")[3].style.borderBottom =
+            "3px solid white";
+          document.querySelector("a").href =
+            "https://www.tiktok.com/@newjeans_official";
+          document.getElementsByClassName("capture")[0].src =
+            "./img/tiktok_capt.png";
+        });
+
+      //메뉴바 버튼 길이를 화면에 따라 조정
+      var navigation = document.getElementsByClassName("nav_bar")[0];
+        var menuItems = navigation.querySelectorAll("button");
+        var sections = document.querySelectorAll("div[class^='title']");
+
+        window.addEventListener("scroll", function () {
+            sections.forEach(function (section, index) {
+                var sectionRect = section.getBoundingClientRect();
+
+                // 현재 메뉴가 화면에 보이는지 확인
+                if ((sectionRect.top) <= window.innerHeight -100 && (sectionRect.bottom) >= 100) {
+                    menuItems[index].style.height = "20vh"; // 현재 메뉴 길이 늘리기
+                } else {
+                    menuItems[index].style.height = "16vh"; // 다른 메뉴 길이 복원
+                }
+            });
+        });
+
+      // 퀴즈
+      // 문제 객체
+      function Question(text, choice, answer) {
+        this.text = text;
+        this.choice = choice;
+        this.answer = answer;
+      }
+      // 퀴즈 정보 객체
+      function Quiz(questions) {
+        this.score = 0; // 점수
+        this.questions = questions; // 질문
+        this.questionIndex = 0; // 질문 순서
+      }
+      // 정답 확인 메소드
+      Quiz.prototype.correctAnswer = function (answer) {
+        return answer == this.questions[this.questionIndex].answer;
+      };
+      // 퀴즈 객체 생성
+      var quiz = new Quiz(questions);
+
+      // 문제 데이터
+      var questions = [
+        new Question(
+          "뉴진스의 멤버 수는?",
+          ["3명", "4명", "5명", "6명"],
+          "5명"
+        ),
+        new Question(
+          "뉴진스의 첫번째 타이틀 곡 제목은?",
+          ["Attention", "Ditto", "OMG", "Super Shy"],
+          "Attention"
+        ),
+        new Question(
+          "뉴진스의 공식 Instagram의 아이디는?",
+          [
+            "NewJeans_official",
+            "NewJeans_ADOR",
+            "newjeans_official",
+            "newjeans_instagram",
+          ],
+          "newjeans_official"
+        ),
+        new Question(
+          "다음 중 뉴진스의 막내는?",
+          ["민지", "하니", "해린", "혜인"],
+          "혜인"
+        ),
+      ];
+
+      // 문제 출력 함수
+      function update_quiz() {
+        var question = document.getElementById("question");
+        var idx = quiz.questionIndex + 1;
+        var choice = document.querySelectorAll(".answer_btn");
+        // 문제 출력
+        question.innerHTML =
+          "Q" + idx + ". " + quiz.questions[quiz.questionIndex].text;
+        // 선택 항목 출력
+        for (var i = 0; i < 4; i++) {
+          choice[i].innerHTML = quiz.questions[quiz.questionIndex].choice[i];
+        }
+        progress();
+      }
+
+      var btn = document.querySelectorAll(".answer_btn"); // .answer_btn 객체
+      // 입력 및 정답 확인 함수
+      function checkAnswer(i) {
+        // 선택버튼(.answer_btn) 이벤트 리스너
+        btn[i].addEventListener("click", function () {
+          var answer = btn[i].innerText;
+          if (quiz.correctAnswer(answer)) {
+            alert("정답입니다!");
+            quiz.score++;
+          } else {
+            alert("틀렸습니다!");
+          }
+          // 다음 문제로 진행 및 결과 처리
+          if (quiz.questionIndex < quiz.questions.length - 1) {
+            quiz.questionIndex++;
+            update_quiz();
+          } else {
+            document.getElementById("question").style.display = "none";
+            result();
+          } // 결과 화면
+        });
+      } // end checkAnswer
+
+      function result() {
+        var quiz_div = document.getElementById("quiz"); // 퀴즈 박스 컨테이너
+        // 백분률 점수 계산
+        var per = parseInt((quiz.score * 100) / quiz.questions.length);
+        // 표시할 텍스트 정보와 변수
+        var txt =
+          "<h1>결과</h1>" +
+          '<h2 id="score">' +
+          "당신의 점수: " +
+          quiz.score +
+          "/" +
+          quiz.questions.length +
+          "<br><br>" +
+          per +
+          "점</h2>";
+        quiz_div.innerHTML = txt; // 결과 텍스트 출력
+        // 점수 별 결과 텍스트 출력
+        if (per < 60) {
+          txt +=
+            '<h2 style="color:rgb(241, 151, 166)">위의 내용을 잘 읽어주세요 ㅠㅠ</h2>';
+          quiz_div.innerHTML = txt;
+        } else if (per >= 60 && per < 80) {
+          txt +=
+            '<h2 style="color:rgb(241, 151, 166)">조금 더 맞히면 완벽해요!</h2>';
+          quiz_div.innerHTML = txt;
+        } else if (per >= 80) {
+          txt +=
+            '<h2 style="color:rgb(241, 151, 166)">당신을 뉴진스 마스터로 인정합니다!</h2>';
+          quiz_div.innerHTML = txt;
+        }
+      } // end result
+
+      // 퀴즈 객체 생성
+      var quiz = new Quiz(questions);
+      // 문제 진행 정보 표시(현재 문제 번호/총 문항수)
+      function progress() {
+        var progress = document.getElementById("progress");
+        progress.innerHTML =
+          "문제 " + (quiz.questionIndex + 1) + " / " + quiz.questions.length;
+      }
+      var btn = document.querySelectorAll(".answer_btn"); // .btn 객체
+      // 4개의 버튼 이벤트리스너 지정
+      for (var i = 0; i < btn.length; i++) {
+        checkAnswer(i);
+      }
+      update_quiz();
     </script>
     <script src="./slide.js"></script>
   </body>
