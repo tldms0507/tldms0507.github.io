@@ -48,14 +48,14 @@ export default function Header({
       </div>
 
       {/* PC buttons */}
-      <div className="hidden gap-8 md:flex">
-        <button className="btn btn--about md:w-48 lg:w-60" onClick={() => closeMenuAnd(onAbout)}>
+      <div className="hidden gap-8 lg:flex">
+        <button className="btn btn--about lg:w-60" onClick={() => closeMenuAnd(onAbout)}>
           <span>About me</span>
         </button>
-        <button className="btn btn--skills md:w-48 lg:w-60" onClick={() => closeMenuAnd(onSkills)}>
+        <button className="btn btn--skills lg:w-60" onClick={() => closeMenuAnd(onSkills)}>
           <span>Skills</span>
         </button>
-        <button className="btn btn--project md:w-48 lg:w-60" onClick={() => closeMenuAnd(onProject)}>
+        <button className="btn btn--project lg:w-60" onClick={() => closeMenuAnd(onProject)}>
           <span>Project</span>
         </button>
       </div>
@@ -63,7 +63,7 @@ export default function Header({
       {/* Mobile menu button */}
       <button
         type="button"
-        className={`md:hidden rounded-md p-2 transition-colors ${headerTextClass} hover:bg-white/10`}
+        className={`lg:hidden rounded-md p-2 transition-colors ${headerTextClass} hover:bg-white/10`}
         aria-label="Toggle menu"
         aria-expanded={menuOpen}
         onClick={() => setMenuOpen((v) => !v)}
