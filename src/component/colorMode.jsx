@@ -5,7 +5,7 @@ export default function ColorMode({ colorMode, onToggle }) {
 
   return (
     <div
-      className={`fixed bottom-8 right-8 flex h-12 w-12 items-center justify-center rounded-full shadow-md  ${
+      className={`z-50 fixed bottom-8 right-8 flex h-12 w-12 items-center justify-center rounded-full shadow-md  ${
         colorMode === "light" ? "bg-gray-100" : "bg-gray-600"
       }`}
     >

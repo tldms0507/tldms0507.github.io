@@ -158,7 +158,7 @@ function App() {
 
       <div className="mx-auto w-full">
         <section className="" aria-label="소개">
-          <div className="hero-gradient-bg relative flex h-[38rem] items-center overflow-hidden px-20 py-20 shadow-xl ring-1 ring-white/15 md:px-12 md:py-16">
+          <div className="hero-gradient-bg relative flex h-[38rem] items-center overflow-hidden px-20 py-20 shadow-xl ring-1 ring-white/15 md:px-12 md:py-16 z-30">
             <div
               className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
               aria-hidden
@@ -167,7 +167,7 @@ function App() {
               className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"
               aria-hidden
             />
-            <div className="relative z-10 w-full text-white">
+            <div className="relative z-10 w-full text-white text-center md:text-left">
               <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hero-title-enter">
                 Portfolio
               </p>
