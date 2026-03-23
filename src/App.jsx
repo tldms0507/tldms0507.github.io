@@ -173,7 +173,7 @@ function App() {
               </p>
               <h2 className="hero-title-enter text-3xl font-bold leading-tight tracking-tight drop-shadow-md md:text-4xl lg:text-5xl">
                 김시은
-                <span className="mt-2 block text-2xl font-semibold text-white/95 md:mt-3 md:text-3xl lg:text-4xl">
+                <span className="mt-2 block text-2xl font-semibold text-white/95 md:mt-3 md:text-3xl lg:text-4xl break-keep">
                   프론트엔드 개발자 포트폴리오
                 </span>
               </h2>
