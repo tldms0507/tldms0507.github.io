@@ -178,7 +178,7 @@ function App() {
                 </span>
               </h2>
               <p
-                className="hero-title-enter-delay mt-8 min-h-[4.5rem] text-base leading-relaxed text-white/90 md:min-h-[3.5rem] md:text-lg"
+                className="hero-title-enter-delay mt-8 min-h-[4.5rem] text-base leading-relaxed text-white/90 md:min-h-[3.5rem] md:text-lg break-keep"
                 aria-live="polite"
               >
                 {heroTyped}
