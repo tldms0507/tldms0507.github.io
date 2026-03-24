@@ -49,13 +49,22 @@ export default function Header({
 
       {/* PC buttons */}
       <div className="hidden gap-8 lg:flex">
-        <button className="btn btn--about lg:w-60" onClick={() => closeMenuAnd(onAbout)}>
+        <button
+          className={`btn ${isDark ? "btn--about-dark" : "btn--about"} lg:w-60`}
+          onClick={() => closeMenuAnd(onAbout)}
+        >
           <span>About me</span>
         </button>
-        <button className="btn btn--skills lg:w-60" onClick={() => closeMenuAnd(onSkills)}>
+        <button
+          className={`btn ${isDark ? "btn--skills-dark" : "btn--skills"} lg:w-60`}
+          onClick={() => closeMenuAnd(onSkills)}
+        >
           <span>Skills</span>
         </button>
-        <button className="btn btn--project lg:w-60" onClick={() => closeMenuAnd(onProject)}>
+        <button
+          className={`btn ${isDark ? "btn--project-dark" : "btn--project"} lg:w-60`}
+          onClick={() => closeMenuAnd(onProject)}
+        >
           <span>Project</span>
         </button>
       </div>
@@ -96,19 +105,19 @@ export default function Header({
         <div className={`${mobileMenuBgClass} p-4`}>
           <div className="flex flex-col gap-3">
             <button
-              className="btn btn--about w-full"
+              className={`btn ${isDark ? "btn--about-dark" : "btn--about"} w-full`}
               onClick={() => closeMenuAnd(onAbout)}
             >
               <span>About me</span>
             </button>
             <button
-              className="btn btn--skills w-full"
+              className={`btn ${isDark ? "btn--skills-dark" : "btn--skills"} w-full`}
               onClick={() => closeMenuAnd(onSkills)}
             >
               <span>Skills</span>
             </button>
             <button
-              className="btn btn--project w-full"
+              className={`btn ${isDark ? "btn--project-dark" : "btn--project"} w-full`}
               onClick={() => closeMenuAnd(onProject)}
             >
               <span>Project</span>

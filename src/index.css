@@ -72,6 +72,33 @@
   .btn--project::after {
     background: #5E7AE7;
   }
+
+  .btn--about-dark {
+    color: #c7d2fe;
+    background-color: #313e5d;
+  }
+
+  .btn--about-dark::after {
+    background: #3b82f6;
+  }
+
+  .btn--skills-dark {
+    color: #ddd6fe;
+    background-color: #3f366a;
+  }
+
+  .btn--skills-dark::after {
+    background: #6750E4;
+  }
+
+  .btn--project-dark {
+    color: #bfdbfe;
+    background-color: #2f3c6e;
+  }
+
+  .btn--project-dark::after {
+    background: #5E7AE7;
+  }
 }
 
 /* Hero: animated gradient background */

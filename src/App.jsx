@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "./component/header";
 import ColorMode from "./component/colorMode";
+import StepList from "./component/stepList";
 
 function NameIcon({ className = "" }) {
   return (
@@ -252,54 +253,8 @@ function App() {
           className={sectionClass}
         >
           <h2 className={titleClass}>Skills</h2>
-          <p className={`mt-4 ${bodyClass}`}>실제로 포트폴리오에서 자주 활용하는 기술들입니다.</p>
+          <StepList isDark={isDark} />
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              {
-                title: "Frontend",
-                items: ["React", "TypeScript", "Vite", "Tailwind CSS", "React Query"],
-              },
-              {
-                title: "Engineering",
-                items: ["코드 리뷰", "테스트 작성", "성능 측정/개선", "접근성 체크"],
-              },
-              {
-                title: "UI/UX",
-                items: ["반응형 레이아웃", "마이크로 인터랙션", "디자인 시스템 구성"],
-              },
-              {
-                title: "Collaboration",
-                items: ["문서화", "이슈 트래킹", "명확한 커뮤니케이션"],
-              },
-            ].map((card) => (
-              <div key={card.title} className={cardClassLarge}>
-                <div className={`text-lg ${subTitleClass}`}>{card.title}</div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {card.items.map((s) => (
-                    <span key={s} className={tagClass}>
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className={`mb-4 ${cardClass}`}>
-                <div className="flex items-center justify-between">
-                  <div className={subTitleClass}>Skills detail #{i + 1}</div>
-                  <div className={`text-sm ${mutedTextClass}`}>Focus: UX + DX</div>
-                </div>
-                <p className={`mt-2 ${bodyClass}`}>
-                  더미 데이터로 스크롤이 충분히 길어지도록 구성했습니다. 실제 포트폴리오에서는
-                  각 항목에 프로젝트 링크/스크린샷을 넣으면 좋아요.
-                </p>
-              </div>
-            ))}
-          </div>
         </section>
 
         <section
