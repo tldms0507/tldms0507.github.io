@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import Header from "./component/header";
 import ColorMode from "./component/colorMode";
 import StepList from "./component/stepList";
+import ProjectCard from "./component/projectcard";
+import { PROJECT_CARD_ITEMS, PROJECT_DETAIL_MAP } from "./data/projects";
 
 function NameIcon({ className = "" }) {
   return (
@@ -58,20 +60,23 @@ function App() {
   const [isHeaderSolid, setIsHeaderSolid] = useState(false);
   const [heroTypewriterActive, setHeroTypewriterActive] = useState(false);
   const [colorMode, setColorMode] = useState("light");
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
   const isDark = colorMode === "dark";
 
   const sectionClass = `${isDark ? "bg-gray-900" : "bg-white"} p-8 py-24 shadow-sm transition-colors duration-500`;
   const titleClass = `text-3xl font-bold ${isDark ? "text-gray-100" : "text-gray-800"} transition-colors duration-500`;
   const bodyClass = `${isDark ? "text-gray-300" : "text-gray-600"} transition-colors duration-500`;
   const cardClass = `rounded-lg p-4 flex gap-6 items-center ${isDark ? "border-gray-700 bg-gray-800" : "border-gray-200 bg-white"} transition-colors duration-500`;
-  const cardClassLarge = `rounded-lg border p-5 ${isDark ? "border-gray-700 bg-gray-800" : "border-gray-200 bg-white"} transition-colors duration-500`;
   const subTitleClass = `font-semibold ${isDark ? "text-gray-100" : "text-gray-800"} transition-colors duration-500`;
   const mutedTextClass = `${isDark ? "text-gray-400" : "text-gray-500"} transition-colors duration-500`;
   const tagClass = `inline-flex rounded-full px-3 py-1 text-sm ${isDark ? "bg-gray-700 text-gray-100" : "bg-gray-100 text-gray-700"} transition-colors duration-500`;
-
   const scrollToRef = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  const selectedProject = PROJECT_CARD_ITEMS.find((p) => p.id === selectedProjectId) ?? null;
+  const selectedProjectDetail = selectedProjectId
+    ? PROJECT_DETAIL_MAP[selectedProjectId]
+    : null;
 
   useEffect(() => {
     const reduced =
@@ -263,61 +268,107 @@ function App() {
           className={sectionClass}
         >
           <h2 className={titleClass}>Project</h2>
-          <p className={`mt-4 ${bodyClass}`}>예시용 프로젝트 카드입니다. (스크롤용 더미 길이)</p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {[
-              {
-                title: "Dashboard UI",
-                desc: "지표/차트/필터를 구성하고 상태 전환을 매끄럽게 만든 화면입니다.",
-                tags: ["React", "TypeScript", "UX"],
-              },
-              {
-                title: "Portfolio Template",
-                desc: "재사용 가능한 섹션/컴포넌트 구조로 빠르게 페이지 확장할 수 있게 만들었습니다.",
-                tags: ["Component", "Tailwind"],
-              },
-              {
-                title: "E-commerce MVP",
-                desc: "장바구니/결제 흐름을 간단히 구현하며 데이터 흐름을 정리했습니다.",
-                tags: ["State", "API"],
-              },
-              {
-                title: "Realtime Notes",
-                desc: "입력/저장/동기화를 UX 중심으로 다듬은 메모 앱 예시입니다.",
-                tags: ["Performance", "UX"],
-              },
-            ].map((p) => (
-              <div key={p.title} className={cardClassLarge}>
-                <div className={`text-lg ${subTitleClass}`}>{p.title}</div>
-                <p className={`mt-2 ${bodyClass}`}>{p.desc}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className={tagClass}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2">
+            {PROJECT_CARD_ITEMS.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                isDark={isDark}
+                onClick={() => {
+                  setSelectedProjectId(project.id);
+                }}
+              />
             ))}
           </div>
 
-          <div className="mt-8 space-y-4">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className={cardClass}>
-                <div className="flex items-center justify-between">
-                  <div className={subTitleClass}>Project notes #{i + 1}</div>
-                  <div className={`text-sm ${mutedTextClass}`}>Draft</div>
-                </div>
-                <p className={`mt-2 ${bodyClass}`}>
-                  스크롤이 끊기지 않게 길이를 늘리는 더미 문장입니다. 실제로는 여기에 기술 스택,
-                  담당 기능, 배운 점을 넣어주세요.
-                </p>
-              </div>
-            ))}
-          </div>
+         
         </section>
       </div>
+
+      {selectedProject ? (
+        <div
+          className="fixed inset-0 z-[100] bg-black/50 p-4 md:p-8"
+          onClick={() => setSelectedProjectId(null)}
+        >
+          <div
+            className={`mx-auto max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl border p-6 md:p-8 ${
+              isDark ? "border-gray-700 bg-gray-900 text-gray-100" : "border-gray-200 bg-white text-gray-800"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-5 flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <h3 className="text-2xl font-bold break-keep">{selectedProject.title}</h3>
+                <p className={`mt-2 leading-relaxed break-keep ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                  {selectedProject.desc}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedProjectId(null)}
+                className={`shrink-0 rounded-md px-3 py-1.5 text-xl font-bold transition-colors ${
+                  isDark ? "text-gray-300 hover:bg-gray-800" : "text-gray-600 hover:bg-gray-100"
+                }`}
+                aria-label="Close modal"
+              >
+                x
+              </button>
+            </div>
+
+            <div className="mb-6 flex flex-wrap gap-2">
+              {selectedProject.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`inline-flex rounded-full px-3 py-1 text-sm ${
+                    isDark ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-700"
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="space-y-4">
+              {selectedProjectDetail?.images?.length ? (
+                selectedProjectDetail.images.map((src, idx) => (
+                  <img
+                    key={`${selectedProject.id}-image-${idx}`}
+                    src={src}
+                    alt={`${selectedProject.title} detail ${idx + 1}`}
+                    className="h-auto w-full rounded-xl border border-gray-200 object-cover"
+                  />
+                ))
+              ) : (
+                <div
+                  className={`flex h-56 items-center justify-center rounded-xl border ${
+                    isDark ? "border-gray-700 bg-gray-800 text-gray-400" : "border-gray-200 bg-gray-50 text-gray-500"
+                  }`}
+                >
+                  상세 이미지가 여기에 들어갑니다.
+                </div>
+              )}
+            </div>
+
+            <div className="mt-6 space-y-4">
+              <h4 className="text-lg font-semibold">상세 설명</h4>
+              <p className={`leading-7 break-keep ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                {selectedProjectDetail?.overview}
+              </p>
+
+              {selectedProjectDetail?.highlights?.length ? (
+                <ul className={`space-y-2 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                  {selectedProjectDetail.highlights.map((item, idx) => (
+                    <li key={`${selectedProject.id}-highlight-${idx}`} className="leading-relaxed">
+                      - {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
