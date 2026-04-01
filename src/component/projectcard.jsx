@@ -15,7 +15,7 @@ export default function ProjectCard({ project, isDark, onClick }) {
         <img
           src={project.image}
           alt={`${project.title} thumbnail`}
-          className="h-48 w-full object-cover"
+          className="h-auto w-full object-cover"
         />
       ) : (
         <div className="flex h-72 w-full items-center justify-center bg-gradient-to-br from-blue-400 via-indigo-500 to-violet-500">
