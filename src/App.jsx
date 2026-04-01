@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "./component/header";
+import Spline from "@splinetool/react-spline";
 import ColorMode from "./component/colorMode";
 import StepList from "./component/stepList";
 import ProjectCard from "./component/projectcard";
@@ -57,6 +58,9 @@ function App() {
   const aboutRef = useRef(null);
   const skillsRef = useRef(null);
   const projectRef = useRef(null);
+  const splineScrollTimeoutRef = useRef(null);
+  const splineMouseDownHandlerRef = useRef(null);
+  const splineInstanceRef = useRef(null);
   const [heroTyped, setHeroTyped] = useState("");
   const [isHeaderSolid, setIsHeaderSolid] = useState(false);
   const [heroTypewriterActive, setHeroTypewriterActive] = useState(false);
@@ -73,6 +77,15 @@ function App() {
   const tagClass = `inline-flex rounded-full px-3 py-1 text-sm ${isDark ? "bg-gray-700 text-gray-100" : "bg-gray-100 text-gray-700"} transition-colors duration-500`;
   const scrollToRef = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  const delayedScrollToRef = (ref, delay = 380) => {
+    if (splineScrollTimeoutRef.current) {
+      window.clearTimeout(splineScrollTimeoutRef.current);
+    }
+    splineScrollTimeoutRef.current = window.setTimeout(() => {
+      scrollToRef(ref);
+      splineScrollTimeoutRef.current = null;
+    }, delay);
   };
   const selectedProject = PROJECT_CARD_ITEMS.find((p) => p.id === selectedProjectId) ?? null;
   const selectedProjectDetail = selectedProjectId
@@ -148,6 +161,39 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSplineLoad = (spline) => {
+    splineInstanceRef.current = spline;
+    const onMouseDown = (e) => {
+      const name = e?.target?.name;
+      if (name === "ABOUTME") {
+        delayedScrollToRef(aboutRef);
+      }
+      else if(name === "SKILLS") {
+        delayedScrollToRef(skillsRef);
+      } 
+      else if(name === "PROJECTS") {
+        delayedScrollToRef(projectRef);
+      }
+    };
+
+    splineMouseDownHandlerRef.current = onMouseDown;
+    spline.addEventListener("mouseDown", onMouseDown);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (splineScrollTimeoutRef.current) {
+        window.clearTimeout(splineScrollTimeoutRef.current);
+      }
+      if (splineInstanceRef.current && splineMouseDownHandlerRef.current) {
+        splineInstanceRef.current.removeEventListener(
+          "mouseDown",
+          splineMouseDownHandlerRef.current
+        );
+      }
+    };
+  }, []);
+
   return (
     <main className="bg-gray-100 w-full min-h-screen">
       <Header
@@ -165,7 +211,9 @@ function App() {
 
       <div className="mx-auto w-full">
         <section className="" aria-label="소개">
-          <div className="hero-gradient-bg relative flex h-[38rem] items-center overflow-hidden px-20 py-20 shadow-xl ring-1 ring-white/15 md:px-12 md:py-16 z-30">
+       
+          <div className="hero-gradient-bg relative flex h-[38rem] md:h-[40rem] flex flex-col pt-40 md:pt-0 md:flex-row items-center overflow-hidden shadow-xl md:pl-20 ring-1 ring-white/15 z-30">
+         
             <div
               className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
               aria-hidden
@@ -174,7 +222,7 @@ function App() {
               className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"
               aria-hidden
             />
-            <div className="relative z-10 w-full text-white text-center md:text-left">
+            <div className="relative z-10 w-[40%] text-white text-center md:text-left">
               <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hero-title-enter">
                 Portfolio
               </p>
@@ -194,6 +242,18 @@ function App() {
                 ) : null}
               </p>
             </div>
+            <div className="hidden md:flex items-center justify-center h-full w-full ">
+            <div className="relative h-full w-full shrink-0">
+              <div className="absolute text-gray-300 left-3/5 top-20 -translate-x-1/2 animate-bounce [animation-duration:1.6s] motion-reduce:animate-none">
+                CLICK ME
+              </div>
+              <Spline
+                scene="https://prod.spline.design/Xhgv9ylUVYH6UOyR/scene.splinecode"
+                onLoad={handleSplineLoad}
+              />
+            </div>
+            </div>
+          
           </div>
         </section>
         <section

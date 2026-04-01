@@ -38,7 +38,9 @@ export default function Header({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 text-xl transition-colors duration-500 ${headerBgClass}`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 text-xl transition-all duration-500 ${
+        isSolid ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+      } ${headerBgClass}`}
     >
       <div
         className={`text-3xl font-bold transition-colors duration-500 cursor-pointer ${headerTextClass}`}
