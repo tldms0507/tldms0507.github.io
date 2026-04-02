@@ -136,29 +136,22 @@ export const PROJECTS = [
     },
   },
   {
-    id: "realtime-notes",
-    title: "Realtime Notes",
+    id: "추가 예정",
+    title: "추가 예정",
     summary:
-      "입력/저장/동기화를 UX 중심으로 다듬은 메모 앱 예시 프로젝트입니다.",
-    tags: ["Performance", "UX"],
-    thumbnail: getImage("note_1"),
+      "추가 예정",
+    tags: ["추가 예정"],
+    thumbnail: getImage("추가 예정"),
     detail: {
-      overview:
-        "실시간 반영 체감을 높이기 위해 입력 지연과 저장 피드백 흐름을 개선하고, 상태 동기화 시의 사용자 혼란을 줄이는 데 집중했습니다.",
+    
       images: getImagesByPrefix("note_"),
       techStacks: [
-        { name: "React", icon: "react", reason: "입력/저장/동기화 상태를 화면에 안정적으로 반영하기 위해 사용했습니다." },
-        { name: "실시간 동기화(예: WebSocket)", reason: "사용자가 즉시 변화를 체감할 수 있도록 동기화 흐름을 구성하기 위해 사용했습니다." },
-        { name: "Tailwind CSS", icon: "tailwind", reason: "피드백/상태 표시 UI를 일관되게 유지하며 빠르게 다듬기 위해 선택했습니다." },
-        { name: "UX 중심 상태 설계", reason: "사용자가 이해하기 쉬운 상태 전환과 피드백을 제공하기 위해 설계했습니다." },
+      
       ],
       imageDescriptions: {
-        note_1: ["실시간 메모의 입력/저장/동기화 흐름을 UX 중심으로 다듬은 화면입니다."],
       },
       highlights: [
-        "입력 지연 체감 개선",
-        "저장 피드백 명확화",
-        "동기화 상태 표시 개선",
+       
       ],
     },
   },
