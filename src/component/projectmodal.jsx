@@ -20,15 +20,20 @@ export default function ProjectModal({
   );
 
   const getImageBasename = (src) => {
-
     const last = String(src).split("/").pop() ?? "";
     return last.replace(/\.(png|jpe?g|webp|avif)$/i, "");
   };
 
-  const sortProjectImages = (images) => {
+  // 프로덕션 빌드에서 Vite가 에셋에 콘텐츠 해시를 붙임 
+  // imageDescriptions 키는 원본 파일명(tave_main)이므로 해시 접미사를 제거
+  const normalizeImageKey = (basename) =>
+    String(basename).replace(/-[a-zA-Z0-9_-]+$/, "");
 
+  const getImageKey = (src) => normalizeImageKey(getImageBasename(src));
+
+  const sortProjectImages = (images) => {
     return images
-      .map((src, idx) => ({ src, idx, key: getImageBasename(src) }))
+      .map((src, idx) => ({ src, idx, key: getImageKey(src) }))
       .sort((a, b) => {
         const aIsMain = a.key.endsWith("_main");
         const bIsMain = b.key.endsWith("_main");
@@ -157,15 +162,15 @@ export default function ProjectModal({
         <h4 className="text-lg font-semibold">상세 설명</h4>
           {sortedDetailImages.length ? (
             sortedDetailImages.map((src, idx) => {
-              const basename = getImageBasename(src);
-              const isMain = basename.endsWith("_main");
-              const numMatch = basename.match(/_(\d+)$/);
+              const imageKey = getImageKey(src);
+              const isMain = imageKey.endsWith("_main");
+              const numMatch = imageKey.match(/_(\d+)$/);
               const num = numMatch ? Number(numMatch[1]) : null;
               const label = isMain ? "메인 화면" : num !== null ? `${num}번째` : `${idx + 1}번째`;
 
               return (
                 <div
-                  key={`${project.id}-image-${basename}-${idx}`}
+                  key={`${project.id}-image-${imageKey}-${idx}`}
                   className="flex flex-col gap-4 md:flex-row md:items-start"
                 >
                   <img
@@ -181,12 +186,12 @@ export default function ProjectModal({
                       }`}
                     >
                       {(() => {
-                        const desc = detail?.imageDescriptions?.[basename];
+                        const desc = detail?.imageDescriptions?.[imageKey];
                         if (Array.isArray(desc) && desc.length) {
                           return (
                             <div className="flex flex-col gap-2">
                               {desc.map((line, i) => (
-                                <p key={`${project.id}-img-desc-${basename}-${i}`} className="text-base break-keep leading-relaxed">
+                                <p key={`${project.id}-img-desc-${imageKey}-${i}`} className="text-base break-keep leading-relaxed">
                                   {line}
                                 </p>
                               ))}
@@ -196,7 +201,7 @@ export default function ProjectModal({
 
                         return (
                           <span>
-                            {desc ?? "여기에 이미지에 대한 상세 설명을 입력/표기하세요."}
+                            {desc ?? ""}
                           </span>
                         );
                       })()}
