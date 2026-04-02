@@ -168,6 +168,19 @@
   animation: typewriter-cursor-blink 1s step-end infinite;
 }
 
+@keyframes loading-progress-indeterminate {
+  0% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(260%);
+  }
+}
+
+.loading-progress-bar {
+  animation: loading-progress-indeterminate 1.25s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-gradient-bg {
     animation: none;
@@ -184,6 +197,11 @@
   .hero-typewriter-cursor {
     animation: none;
     opacity: 0.6;
+  }
+
+  .loading-progress-bar {
+    animation: none;
+    transform: translateX(0);
   }
 
 }

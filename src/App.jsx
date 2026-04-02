@@ -5,6 +5,7 @@ import ColorMode from "./component/colorMode";
 import StepList from "./component/stepList";
 import ProjectCard from "./component/projectcard";
 import ProjectModal from "./component/projectmodal";
+import LoadingScreen from "./component/loadingScreen";
 import { PROJECT_CARD_ITEMS, PROJECT_DETAIL_MAP } from "./data/projects";
 
 function NameIcon({ className = "" }) {
@@ -66,6 +67,7 @@ function App() {
   const [heroTypewriterActive, setHeroTypewriterActive] = useState(false);
   const [colorMode, setColorMode] = useState("light");
   const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const isDark = colorMode === "dark";
 
   const sectionClass = `${isDark ? "bg-gray-900" : "bg-white"} p-8 py-24 shadow-sm transition-colors duration-500`;
@@ -149,6 +151,33 @@ function App() {
   }, []);
 
   useEffect(() => {
+    let timeoutId;
+    const finishLoading = () => {
+      timeoutId = window.setTimeout(() => setIsInitialLoading(false), 600);
+    };
+
+    if (document.readyState === "complete") {
+      finishLoading();
+    } else {
+      window.addEventListener("load", finishLoading, { once: true });
+    }
+
+    return () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+      window.removeEventListener("load", finishLoading);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isInitialLoading ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isInitialLoading]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!aboutRef.current) return;
       const top = aboutRef.current.getBoundingClientRect().top;
@@ -195,7 +224,9 @@ function App() {
   }, []);
 
   return (
-    <main className="bg-gray-100 w-full min-h-screen">
+    <>
+      {isInitialLoading ? <LoadingScreen isDark={isDark} /> : null}
+      <main className="bg-gray-100 w-full min-h-screen">
       <Header
         isSolid={isHeaderSolid}
         isDark={isDark}
@@ -244,7 +275,7 @@ function App() {
             </div>
             <div className="hidden md:flex items-center justify-center h-full w-full ">
             <div className="relative h-full w-full shrink-0">
-              <div className="absolute text-gray-300 left-3/5 top-20 -translate-x-1/2 animate-bounce [animation-duration:1.6s] motion-reduce:animate-none">
+              <div className="absolute text-gray-300 left-3/5 top-28 -translate-x-1/2 animate-bounce [animation-duration:1.6s] motion-reduce:animate-none">
                 CLICK ME
               </div>
               <Spline
@@ -354,7 +385,8 @@ function App() {
         detail={selectedProjectDetail}
         onClose={() => setSelectedProjectId(null)}
       />
-    </main>
+      </main>
+    </>
   );
 }
 
