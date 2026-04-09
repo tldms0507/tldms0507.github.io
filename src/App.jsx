@@ -329,7 +329,7 @@ function App() {
 },
               {
                 title: "[사용자의 행동 분석을 통한 성장]",
-                body: "동아리 홈페이지의 사용자 유입 데이터와 사이트 이용 경험을 분석해 정보 구조와 주요 홈페이지 구성 요소,  UI 등을 개선했습니다. 그 결과 동아리 지원율 192% 증가, 약 500명 이상의 사용자 유입을 확보하며 홈페이지의 접근성을 높였습니다.",
+                body: "동아리 홈페이지의 사용자 유입 데이터와 사이트 이용 경험을 분석해 정보 구조와 주요 홈페이지 구성 요소, UI 등을 개선했습니다. 그 결과 동아리 지원율 192% 증가, 약 500명 이상의 사용자 유입을 확보하며 홈페이지의 접근성을 높였습니다.",
               },
               {
                 title: "[지표로 검증하며 서비스를 개선]",
@@ -361,7 +361,7 @@ function App() {
         >
           <h2 className={titleClass}>Project</h2>
 
-          <div className="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2">
+          <div className="mt-6 grid gap-6 grid-cols-1 ">
             {PROJECT_CARD_ITEMS.map((project) => (
               <ProjectCard
                 key={project.id}

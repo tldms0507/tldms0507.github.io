@@ -16,9 +16,14 @@ const PROJECT_IMAGE_MAP = Object.fromEntries(
 );
 
 const getImage = (key) => PROJECT_IMAGE_MAP[key] ?? "";
+
+const isCardOnlyImageKey = (key) =>
+  /_logo$/i.test(key) || /_thumbnail$/i.test(key);
+
 const getImagesByPrefix = (prefix) =>
   Object.entries(PROJECT_IMAGE_MAP)
     .filter(([key]) => key.startsWith(prefix))
+    .filter(([key]) => !isCardOnlyImageKey(key))
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
     .map(([, src]) => src);
 
@@ -29,7 +34,11 @@ export const PROJECTS = [
     summary:
       "동아리의 공식 홈페이지를 런칭하고, 서비스와 지원을 통합 관리하는 관리자 페이지를 개발했습니다.",
     tags: ["14인", "FE 팀장", "1년 6개월"],
-    thumbnail: getImage("tave_main"),
+    thumbnail: getImage("tave_thumbnail"),
+    logo: getImage("tave_logo"),
+    cardGradient:
+      "from-[#111111] to-[#4F68AF]",
+    link: "https://www.tave-wave.com",
     detail: {
       background: "공식 홈페이지 부재로 인해 동아리 정보에 대한 접근성이 낮았고, 타 IT 연합 동아리 대비 경쟁력 확보에 한계가 있어 공식 홈페이지 개발을 시작했습니다. 이후 동아리 규모가 확장됨에 따라 구글 폼 기반의 지원 방식에 한계를 느꼈고, 이를 개선하기 위해 전용 지원 페이지 개발로 프로젝트를 확장했습니다.",
 
@@ -50,7 +59,7 @@ export const PROJECTS = [
         "지원 관리자 페이지 서류 질문, 서류 평가 리팩토링"
       ],
       imageDescriptions: {
-        tave_main: ["사용자가 여러 섹션에서 상세 정보를 확인하기 쉽도록 Tailwind css를 사용해 섹션별 스크롤 애니메이션 구현", 
+        tave_thumbnail: ["사용자가 여러 섹션에서 상세 정보를 확인하기 쉽도록 Tailwind css를 사용해 섹션별 스크롤 애니메이션 구현", 
           "미디어 쿼리를 통한 반응형 디자인을 구현해 PC와 모바일에서 안정적으로 화면을 구성", 
           "MS Clarity 기반 Dead Click 탐지 → 제휴사 로고에 링크 연결 → Dead Click 발생 세션 77% 감소",
         ],
@@ -80,19 +89,33 @@ export const PROJECTS = [
     summary:
       "기업을 대상으로 합리적인 가격에 대학생들과 외주를 매칭해주는 플랫폼 설계 및 개발했습니다.",
     tags: ["6인", "FE 팀장", "1년 2개월(진행중)"],
-    thumbnail: getImage("souf_main"),
+    thumbnail: getImage("souf_thumbnail"),
+    logo: getImage("souf_logo"),
+    cardGradient:
+      "from-[#CDDEFF] via-[#DAE6FF] to-[#FBE59A]",
+    link: "https://www.souf.co.kr",
     detail: {
       overview:
         "세종대학교 창업지원단 선정 이후 실제 운영 지표를 추적해 인증/온보딩 플로우를 개선했고, 반복적인 UX 개선 사이클을 유지하고 있습니다.",
       images: getImagesByPrefix("souf_"),
       techStacks: [
         { name: "React", icon: "react", reason: "상태 변화에 따른 화면 전환을 안정적으로 처리하기 위해 사용했습니다." },
-        { name: "Vite", reason: "빠른 로컬 개발 환경 덕분에 실험/개선 주기를 단축할 수 있었습니다." },
-        { name: "Tailwind CSS", icon: "tailwind", reason: "온보딩/인증 화면의 UI를 빠르게 반복 수정하기 위해 선택했습니다." },
-        { name: "데이터 기반 UX", reason: "운영 지표를 근거로 병목 구간을 찾아 개선하기 위해 데이터 분석을 활용했습니다." },
+        { name: "AWS S3,CloudFront", icon: "aws", reason: "대용량의 피드 이미지, 동영상 등 리소스를 효율적으로 관리하기 위해 사용했습니다." },
+        { name: "Tailwind CSS", icon: "tailwind", reason: "재사용되는 스타일 코드를 효율적으로 관리하기 위해 사용했습니다." },
+        { name: "React Query", icon: "reactQuery", reason: "데이터를 필터링, 정렬, 페이징 등 다양한 방식으로 조회하는데 효율성을 높이기 위해 사용했습니다." },
+        { name: "Zustand", icon: "zustand", reason: "역할(기업, 대학생, 동아리) 구분에 따른 서비스 이용 권한 관리를 위해 전역 상태를 설정하는데에 사용했습니다." },
+        { name: "Jira", icon: "jira", reason: "스프린트를 기반으로 협업을 효율적으로 관리하고, 프로젝트 진행 상황을 시각화하기 위해 사용했습니다." },
+        { name: "Confluence", icon: "jira", reason: "마케팅, 개발, 디자인 등 다양한 분야의 문서를 공유하고 협업하기 위해 사용했습니다." },
+      ],
+      roles: [
+        "프론트엔드 리드 개발(80%)",
+        "메인 페이지 캐러셀 슬라이드 등 인터랙티브 UI 개발",
+        "관리자 페이지 전체 API 연동",
+        "사용자 유입을 위한 SNS 홍보 활동",
+        "Google Analyitics를 활용한 사용자 행동 지표 추적 및 분석",
       ],
       imageDescriptions: {
-        souf_main: ["서비스의 핵심 가치와 온보딩 진입을 한 눈에 이해할 수 있게 메인 화면을 구성했습니다."],
+        souf_thumbnail: ["대학생–기업 외주 매칭 플랫폼 SOUF라는 서비스의 가치를 빠르게 파악할 수 있게 외주 매칭 서비스 소개 문구와 이미지를 작업하여 UI 개선을 거듭함"],
         souf_2: ["인증/초기 설정 단계로, 사용자가 막히지 않도록 문구/흐름을 정리한 화면입니다."],
         souf_3: ["매칭 진행 흐름에서 사용자 행동을 자연스럽게 다음 단계로 연결하도록 구성했습니다."],
         souf_4: ["운영 지표 확인 및 반복 개선이 가능한 관리 화면(또는 상세 화면)입니다."],
@@ -110,7 +133,11 @@ export const PROJECTS = [
     summary:
       "기타 연주 오디오를 분석해 피드백을 제공하는 기타 연습 보조 프로그램을 개발했습니다.",
     tags: ["3인", "팀장", "1년"],
-    thumbnail: getImage("daily_main"),
+    thumbnail: getImage("daily_thumbnail"),
+    logo: getImage("daily_logo"),
+    cardGradient:
+      "from-[#84B3F5] to-[#EFF5FE]",
+    link: "https://github.com/Con-graduation/Capstone_FE",
     detail: {
       overview:
         "MCP를 활용해 연주 영상 업로드-분석-피드백 전달 흐름을 설계하고, 학습자가 반복 연습에 활용할 수 있도록 결과 화면을 구성했습니다.",
@@ -122,7 +149,7 @@ export const PROJECTS = [
         { name: "상태 관리(컴포넌트/훅)", reason: "진행 상태와 결과 상태를 일관되게 표현하기 위해 훅 기반 상태를 사용했습니다." },
       ],
       imageDescriptions: {
-        daily_main: ["학습자의 연습 시작/업로드를 직관적으로 유도하는 메인 화면입니다."],
+        daily_thumbnail: ["학습자의 연습 시작/업로드를 직관적으로 유도하는 메인 화면입니다."],
         daily_1: ["업로드/분석 단계로, 상태 표시와 지연 체감 최소화를 목표로 구성했습니다."],
         daily_2: ["분석 결과 요약 화면으로, 사용자가 바로 이해하고 다음 행동으로 넘어가도록 구성했습니다."],
         daily_3: ["피드백 상세 단계로, 반복 연습을 돕는 구조화된 안내를 제공하는 화면입니다."],
@@ -135,26 +162,7 @@ export const PROJECTS = [
       ],
     },
   },
-  {
-    id: "추가 예정",
-    title: "추가 예정",
-    summary:
-      "추가 예정",
-    tags: ["추가 예정"],
-    thumbnail: getImage("추가 예정"),
-    detail: {
-    
-      images: getImagesByPrefix("note_"),
-      techStacks: [
-      
-      ],
-      imageDescriptions: {
-      },
-      highlights: [
-       
-      ],
-    },
-  },
+ 
 ];
 
 export const PROJECT_CARD_ITEMS = PROJECTS.map((project) => ({
@@ -163,6 +171,11 @@ export const PROJECT_CARD_ITEMS = PROJECTS.map((project) => ({
   desc: project.summary,
   tags: project.tags,
   image: project.thumbnail,
+  logo: project.logo,
+  link: project.link,
+  cardGradient:
+    project.cardGradient ??
+    "from-slate-700 via-slate-600 to-slate-800",
 }));
 
 export const PROJECT_DETAIL_MAP = Object.fromEntries(

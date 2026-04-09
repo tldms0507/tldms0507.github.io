@@ -20,7 +20,8 @@ export default function ProjectModal({
   );
 
   const getImageBasename = (src) => {
-    const last = String(src).split("/").pop() ?? "";
+    let last = String(src).split("/").pop() ?? "";
+    last = last.split("?")[0].split("#")[0];
     return last.replace(/\.(png|jpe?g|webp|avif)$/i, "");
   };
 
@@ -30,6 +31,11 @@ export default function ProjectModal({
     String(basename).replace(/-[a-zA-Z0-9_-]+$/, "");
 
   const getImageKey = (src) => normalizeImageKey(getImageBasename(src));
+
+  const isCardOnlyAsset = (src) => {
+    const key = getImageKey(src).toLowerCase();
+    return key.endsWith("_logo") || key.endsWith("_thumbnail");
+  };
 
   const sortProjectImages = (images) => {
     return images
@@ -53,7 +59,8 @@ export default function ProjectModal({
       .map(({ src }) => src);
   };
 
-  const sortedDetailImages = detail?.images?.length ? sortProjectImages(detail.images) : [];
+  const sortedDetailImages =
+    detail?.images?.length ? sortProjectImages(detail.images.filter((src) => !isCardOnlyAsset(src))) : [];
 
   return (
     <div className="fixed inset-0 z-[100] bg-black/50 p-4 md:p-8" onClick={onClose}>
@@ -68,6 +75,15 @@ export default function ProjectModal({
         <div className="mb-5 flex items-start justify-between gap-4">
           <div className="min-w-0">
             <h3 className="text-2xl font-bold break-keep">{project.title}</h3>
+            <h2 className="text-lg font-semibold">
+              {project.link ? (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                  {project.link}
+                </a>
+              ) : (
+                <span className={isDark ? "text-gray-400" : "text-gray-500"}>공개 링크 없음</span>
+              )}
+            </h2>
             <p
               className={`mt-2 leading-relaxed break-keep ${
                 isDark ? "text-gray-300" : "text-gray-600"
