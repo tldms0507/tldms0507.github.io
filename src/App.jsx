@@ -68,6 +68,8 @@ function App() {
   const [colorMode, setColorMode] = useState("light");
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [windowLoadReady, setWindowLoadReady] = useState(false);
+  const [splineSceneReady, setSplineSceneReady] = useState(false);
   const isDark = colorMode === "dark";
 
   const sectionClass = `${isDark ? "bg-gray-900" : "bg-white"} p-8 py-24 shadow-sm transition-colors duration-500`;
@@ -151,23 +153,40 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let timeoutId;
-    const finishLoading = () => {
-      timeoutId = window.setTimeout(() => setIsInitialLoading(false), 600);
-    };
+    const onWindowLoad = () => setWindowLoadReady(true);
 
     if (document.readyState === "complete") {
-      finishLoading();
+      onWindowLoad();
     } else {
-      window.addEventListener("load", finishLoading, { once: true });
+      window.addEventListener("load", onWindowLoad, { once: true });
     }
 
     return () => {
-      if (timeoutId) {
-        window.clearTimeout(timeoutId);
-      }
-      window.removeEventListener("load", finishLoading);
+      window.removeEventListener("load", onWindowLoad);
     };
+  }, []);
+
+  /** md 미만에서는 Spline 영역이 숨겨져 있어 onLoad에 의존하지 않음 */
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => {
+      if (!mq.matches) setSplineSceneReady(true);
+    };
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!windowLoadReady || !splineSceneReady) return undefined;
+    const id = window.setTimeout(() => setIsInitialLoading(false), 600);
+    return () => window.clearTimeout(id);
+  }, [windowLoadReady, splineSceneReady]);
+
+  /** Spline/네트워크 오류 시 무한 로딩 방지 */
+  useEffect(() => {
+    const id = window.setTimeout(() => setIsInitialLoading(false), 20000);
+    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -207,6 +226,7 @@ function App() {
 
     splineMouseDownHandlerRef.current = onMouseDown;
     spline.addEventListener("mouseDown", onMouseDown);
+    setSplineSceneReady(true);
   };
 
   useEffect(() => {

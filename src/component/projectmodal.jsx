@@ -25,12 +25,17 @@ export default function ProjectModal({
     return last.replace(/\.(png|jpe?g|webp|avif)$/i, "");
   };
 
-  // 프로덕션 빌드에서 Vite가 에셋에 콘텐츠 해시를 붙임 
-  // imageDescriptions 키는 원본 파일명(tave_main)이므로 해시 접미사를 제거
+  // 프로덕션 빌드에서 Vite가 에셋에 콘텐츠 해시를 붙임
+  // imageDescriptions 키는 원본 파일명(tave_0 등)이므로 해시 접미사를 제거
   const normalizeImageKey = (basename) =>
     String(basename).replace(/-[a-zA-Z0-9_-]+$/, "");
 
   const getImageKey = (src) => normalizeImageKey(getImageBasename(src));
+
+  const orderIndexFromKey = (key) => {
+    const m = String(key).match(/_(\d+)$/);
+    return m ? Number(m[1]) : null;
+  };
 
   const isCardOnlyAsset = (src) => {
     const key = getImageKey(src).toLowerCase();
@@ -41,19 +46,11 @@ export default function ProjectModal({
     return images
       .map((src, idx) => ({ src, idx, key: getImageKey(src) }))
       .sort((a, b) => {
-        const aIsMain = a.key.endsWith("_main");
-        const bIsMain = b.key.endsWith("_main");
-        if (aIsMain && !bIsMain) return -1;
-        if (!aIsMain && bIsMain) return 1;
-
-        const aNumMatch = a.key.match(/_(\d+)$/);
-        const bNumMatch = b.key.match(/_(\d+)$/);
-        const aNum = aNumMatch ? Number(aNumMatch[1]) : null;
-        const bNum = bNumMatch ? Number(bNumMatch[1]) : null;
-
+        const aNum = orderIndexFromKey(a.key);
+        const bNum = orderIndexFromKey(b.key);
         if (aNum !== null && bNum !== null) return aNum - bNum;
-        if (aNum !== null && bNum === null) return -1;
-        if (aNum === null && bNum !== null) return 1;
+        if (aNum !== null) return -1;
+        if (bNum !== null) return 1;
         return a.idx - b.idx;
       })
       .map(({ src }) => src);
@@ -75,15 +72,29 @@ export default function ProjectModal({
         <div className="mb-5 flex items-start justify-between gap-4">
           <div className="min-w-0">
             <h3 className="text-2xl font-bold break-keep">{project.title}</h3>
-            <h2 className="text-lg font-semibold">
-              {project.link ? (
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                  {project.link}
-                </a>
-              ) : (
-                <span className={isDark ? "text-gray-400" : "text-gray-500"}>공개 링크 없음</span>
-              )}
-            </h2>
+            {project.link || project.linkCaption ? (
+              <div className="mt-1 space-y-1">
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-lg font-semibold text-blue-600 hover:underline break-all"
+                  >
+                    {project.link}
+                  </a>
+                ) : null}
+                {project.linkCaption ? (
+                  <p
+                    className={`text-xs leading-snug break-keep ${
+                      isDark ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    {project.linkCaption}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
             <p
               className={`mt-2 leading-relaxed break-keep ${
                 isDark ? "text-gray-300" : "text-gray-600"
@@ -119,7 +130,11 @@ export default function ProjectModal({
         <div className="space-y-4">
           <h4 className="text-lg font-semibold">개요</h4>
           <div>
-            <p className={`leading-7 break-keep ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+            <p
+              className={`whitespace-pre-line leading-7 break-keep ${
+                isDark ? "text-gray-300" : "text-gray-700"
+              }`}
+            >
               {detail?.background}
             </p>
           </div>
@@ -179,10 +194,9 @@ export default function ProjectModal({
           {sortedDetailImages.length ? (
             sortedDetailImages.map((src, idx) => {
               const imageKey = getImageKey(src);
-              const isMain = imageKey.endsWith("_main");
-              const numMatch = imageKey.match(/_(\d+)$/);
-              const num = numMatch ? Number(numMatch[1]) : null;
-              const label = isMain ? "메인 화면" : num !== null ? `${num}번째` : `${idx + 1}번째`;
+              const orderNum = orderIndexFromKey(imageKey);
+              const label =
+                orderNum !== null ? `${orderNum}번 화면` : `${idx + 1}번째`;
 
               return (
                 <div
