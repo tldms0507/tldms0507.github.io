@@ -61,7 +61,7 @@ export default function ProjectCard({ project, isDark, onClick }) {
               <img
                 src={project.image}
                 alt={`${project.title} thumbnail`}
-                className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                className="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.10]"
               />
             ) : (
               <div className="flex h-full min-h-[160px] w-full items-center justify-center rounded-lg bg-black/20 px-4">
