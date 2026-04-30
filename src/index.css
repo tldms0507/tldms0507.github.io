@@ -32,7 +32,7 @@
     width: 140%;
     background: #4168E5;
     transition: all 0.5s ease-in-out;
-    transform: translateX(-98%) translateY(-24%) rotate(45deg);
+    transform: translateX(-120%) translateY(-24%) rotate(45deg);
   }
 
   .btn:hover::after {
@@ -98,6 +98,15 @@
 
   .btn--project-dark::after {
     background: #5E7AE7;
+  }
+
+  /* 모바일 드롭다운 메뉴 버튼은 색상만 유지하고 hover 애니메이션 비활성화 */
+  .btn-mobile-menu::after {
+    display: none;
+  }
+
+  .btn-mobile-menu:hover span {
+    color: inherit;
   }
 }
 

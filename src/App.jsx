@@ -7,6 +7,7 @@ import ProjectCard from "./component/projectcard";
 import ProjectModal from "./component/projectmodal";
 import LoadingScreen from "./component/loadingScreen";
 import { PROJECT_CARD_ITEMS, PROJECT_DETAIL_MAP } from "./data/projects";
+import mobileBackground from "./assets/image/mobile_background.png";
 
 function NameIcon({ className = "" }) {
   return (
@@ -253,7 +254,15 @@ function App() {
       <div className="mx-auto w-full">
         <section className="" aria-label="소개">
        
-        <div className="hero-gradient-bg relative h-[38rem] lg:h-[50rem] overflow-hidden shadow-xl ring-1 ring-white/15 z-30">
+        <div
+          className="relative h-[38rem] lg:h-[50rem] overflow-hidden shadow-xl ring-1 ring-white/15 z-30"
+          style={{
+            backgroundImage: `url(${mobileBackground})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
       
           <div
             className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"
@@ -275,19 +284,19 @@ function App() {
           </div>
 
         
-          <div className="relative z-10 flex h-full items-center px-6 pt-28 md:px-20 md:pt-0 pointer-events-none">
-            <div className="block lg:hidden  w-full text-white text-center md:w-[40%] md:text-left">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/70 hero-title-enter">
+          <div className="relative z-10 flex h-full items-center justify-center px-6 pt-28 lg:px-20 lg:pt-0 pointer-events-none">
+            <div className="block lg:hidden  w-full text-black text-center md:w-[40%] lg:text-left">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-black/50 hero-title-enter">
                 Portfolio
               </p>
-              <h2 className="hero-title-enter text-3xl font-bold leading-tight tracking-tight drop-shadow-md md:text-4xl lg:text-5xl">
+              <h2 className="hero-title-enter text-3xl font-bold leading-tight text-black/70 tracking-tight drop-shadow-md md:text-4xl lg:text-5xl">
                 김시은
-                <span className="mt-2 block text-2xl font-semibold text-white/95 md:mt-3 md:text-3xl lg:text-4xl break-keep">
+                <span className="mt-2 block text-2xl font-semibold text-black/70 md:mt-3 md:text-3xl lg:text-4xl break-keep">
                   프론트엔드 개발자 포트폴리오
                 </span>
               </h2>
               <p
-                className="hero-title-enter-delay mt-8 min-h-[4.5rem] text-base leading-relaxed text-white/90 md:min-h-[3.5rem] md:text-lg break-keep"
+                className="hero-title-enter-delay mt-8 min-h-[4.5rem] text-base leading-relaxed text-black/60 md:min-h-[3.5rem] md:text-lg break-keep"
                 aria-live="polite"
               >
                 {heroTyped}

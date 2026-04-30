@@ -30,7 +30,6 @@ export default function Header({
     : isDark
       ? "bg-gray-900/95 backdrop-blur shadow-sm"
       : "bg-white/95 shadow-sm";
-
   const closeMenuAnd = (fn) => {
     setMenuOpen(false);
     fn();
@@ -100,26 +99,26 @@ export default function Header({
 
       {/* Mobile dropdown */}
       <div
-        className={`sm:hidden absolute left-0 right-0 top-full z-50 overflow-hidden transition-[max-height,opacity] duration-300 ${
+        className={`lg:hidden absolute left-0 right-0 top-full z-50 overflow-hidden transition-[max-height,opacity] duration-300 ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className={`${mobileMenuBgClass} p-4`}>
           <div className="flex flex-col gap-3">
             <button
-              className={`btn ${isDark ? "btn--about-dark" : "btn--about"} w-full`}
+              className={`btn btn-mobile-menu ${isDark ? "btn--about-dark" : "btn--about"} w-full`}
               onClick={() => closeMenuAnd(onAbout)}
             >
               <span>About me</span>
             </button>
             <button
-              className={`btn ${isDark ? "btn--skills-dark" : "btn--skills"} w-full`}
+              className={`btn btn-mobile-menu ${isDark ? "btn--skills-dark" : "btn--skills"} w-full`}
               onClick={() => closeMenuAnd(onSkills)}
             >
               <span>Skills</span>
             </button>
             <button
-              className={`btn ${isDark ? "btn--project-dark" : "btn--project"} w-full`}
+              className={`btn btn-mobile-menu ${isDark ? "btn--project-dark" : "btn--project"} w-full`}
               onClick={() => closeMenuAnd(onProject)}
             >
               <span>Project</span>
