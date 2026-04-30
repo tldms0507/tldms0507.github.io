@@ -190,6 +190,18 @@
   animation: loading-progress-indeterminate 1.25s ease-in-out infinite;
 }
 
+.on-screen {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: transform 0.7s ease, opacity 1s ease;
+  will-change: transform, opacity;
+}
+
+.on-screen.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-gradient-bg {
     animation: none;
@@ -211,6 +223,13 @@
   .loading-progress-bar {
     animation: none;
     transform: translateX(0);
+  }
+
+  .on-screen,
+  .on-screen.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
 }

@@ -208,6 +208,35 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const targets = Array.from(document.querySelectorAll(".on-screen"));
+    if (!targets.length) return undefined;
+
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (reducedMotion) {
+      targets.forEach((el) => el.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const handleSplinePointer = (e) => {
     const rawName = String(e?.target?.name ?? e?.target?.parent?.name ?? "");
     const normalizedName = rawName.replace(/\s+/g, "").toUpperCase();
@@ -313,9 +342,9 @@ function App() {
           style={{ scrollMarginTop: 40 }}
           className={sectionClass}
         >
-          <h2 className={titleClass}>About me</h2>
+          <h2 className={`on-screen ${titleClass}`}>About me</h2>
          
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="on-screen mt-6 grid gap-4 md:grid-cols-2">
             {[
               { icon: NameIcon, k: "이름", v: "김시은" },
               { icon: BirthIcon, k: "생년월일", v: "2002.05.07" },
@@ -343,19 +372,15 @@ function App() {
             }`}
           ></span>
 
-          <div className={`mt-8 space-y-6 leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"} transition-colors duration-500`}>
+          <div className={`on-screen mt-8 space-y-6 leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"} transition-colors duration-500`}>
             {[{
-  title: "[책임감 있게 프로젝트를 완수하는 개발자]",
-  body: "동아리에서 1년 6개월 동안 운영진으로 활동하며 여러 프로젝트를 진행했습니다. 대부분의 프로젝트에서 프론트엔드 리드를 맡아 구현 방향을 정리하고 일정과 구조를 설계하며 팀과 협업했습니다. 개발 과정에서 예상치 못한 문제들이 발생해도 끝까지 해결 방법을 찾아 프로젝트를 완성하는 과정을 중요하게 생각합니다.",
+  title: "[리드 개발자로서 구조를 설계하고 팀을 이끈 개발자]",
+  body: "대부분의 프로젝트에서 프론트엔드 리드를 맡아 컴포넌트 구조 설계, 상태 관리 전략 수립, CI/CD 파이프라인 구축까지 전 영역을 주도했습니다. 단순히 기능을 구현하는 것을 넘어 팀원들에게 기술적 의사결정의 근거를 명확히 설명하고, 변화하는 요구사항에 구조적으로 대응하는 것을 중요하게 생각합니다. 1년 6개월간 동아리 운영진으로 활동하며 예상치 못한 문제가 발생해도 끝까지 해결 방법을 찾아 프로젝트를 완성해왔습니다.",
 },
-              {
-                title: "[사용자의 행동 분석을 통한 성장]",
-                body: "동아리 홈페이지의 사용자 유입 데이터와 사이트 이용 경험을 분석해 정보 구조와 주요 홈페이지 구성 요소, UI 등을 개선했습니다. 그 결과 동아리 지원율 192% 증가, 약 500명 이상의 사용자 유입을 확보하며 홈페이지의 접근성을 높였습니다.",
-              },
-              {
-                title: "[지표로 검증하며 서비스를 개선]",
-                body: "대학생–기업 외주 매칭 플랫폼 ‘SOUF’를 개발하고 실제로 운영해보며 Google Analytics 기반 사용자 흐름 분석을 통해 로그인·회원가입 절차를 개선해 로그인 수 300건 이상 증가, 이탈률을 5% 이하로 낮추었습니다. 세종대학교 창업지원단 선정 후, 운영 데이터를 기반으로 지속적인 UX 개선을 이어가고 있습니다.",
-              },
+{
+  title: "[데이터를 기반으로 문제를 찾고 성과로 연결하는 개발자]",
+  body: "MS Clarity와 Google Analytics를 활용해 사용자가 어떤 부분에 관심을 보이고 어디서 이탈하는지 직접 분석해 UI 구조와 서비스 흐름을 개선해왔습니다. 동아리 공식 홈페이지에서는 Dead Click 영역과 높은 관심도 페이지를 발견해 콘텐츠 구조를 개선했고, 대학생-기업 외주 매칭 플랫폼에서는 회원가입 이탈 원인을 데이터로 특정해 흐름을 재설계했습니다. 그 결과 동아리 지원율 192% 증가, 플랫폼 이탈률 5% 이하 감소라는 실질적인 수치를 달성했습니다.",
+},
             ].map((item) => (
               <div key={item.title} className="space-y-2">
                 <div className={`text-lg font-semibold ${subTitleClass}`}>{item.title}</div>
@@ -370,8 +395,10 @@ function App() {
           style={{ scrollMarginTop: 40 }}
           className={sectionClass}
         >
-          <h2 className={titleClass}>Skills</h2>
-          <StepList isDark={isDark} />
+          <h2 className={`on-screen ${titleClass}`}>Skills</h2>
+          <div className="on-screen">
+            <StepList isDark={isDark} />
+          </div>
 
         </section>
 
@@ -380,9 +407,9 @@ function App() {
           style={{ scrollMarginTop: 40 }}
           className={sectionClass}
         >
-          <h2 className={titleClass}>Project</h2>
+          <h2 className={`on-screen ${titleClass}`}>Project</h2>
 
-          <div className="mt-6 grid gap-6 grid-cols-1 ">
+          <div className="on-screen mt-6 grid gap-6 grid-cols-1 ">
             {PROJECT_CARD_ITEMS.map((project) => (
               <ProjectCard
                 key={project.id}
